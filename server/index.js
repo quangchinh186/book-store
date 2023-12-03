@@ -19,9 +19,9 @@ app.post('/createUser', (req, res) => {
       if (users.length !== 0) {
         res.json('Username is taken!!!')
       } else {
-        const newUser = new usersModel({
+        const newUser = new UserModel({
             username: req.body.username,
-            password: req.body.password,
+            password: req.body.password
         });
         newUser.save();
         res.json(newUser._id);
@@ -39,5 +39,5 @@ app.put('/editUser', (req, res) => {
 })
 
 app.delete('/deleteUser', (req, res) => {
-    
+
 })
