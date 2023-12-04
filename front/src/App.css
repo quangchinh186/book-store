@@ -1,38 +1,467 @@
-.App {
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: bisque;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.preview {
+  margin: 0;
+  padding: 0;
+}
+.preview video {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+.title {
+  position: absolute;
+  font-size: 100px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  font-family: calibri;
+  width: 150px;
+  text-align: center;
+  margin: auto;
+  top: 30%;
+  left: 40%;
+  border-style: solid;
+  border-radius: 10px;
+  background-color: blue;
+  padding: 5px 11px 3px 11px;
+}
+
+/* MenuBox */
+.menuBox {
+  background-color: black;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  width: 25%;
+  text-align: left;
+  z-index: 1;
+}
+
+.menuBox .userInfo {
+  background-color: #fe3c72;
+  height: 70px;
+  font-size: 20px;
+}
+
+.userIcon {
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.menuBox .avatar {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.menuBox .option {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  margin: 2px;
+  padding: 10px;
+  outline: none;
+}
+
+.menuBox .option-selected {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  margin: 2px;
+  padding: 10px;
+  outline: none;
+  border-bottom: solid 4px rgb(243, 33, 33);
+}
+
+/* chatBox */
+
+.message-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: black;
+}
+
+.message-container::-webkit-scrollbar {
+  width: 6px;
+  background-color: black;
+}
+
+.message-container::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.message-container {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  border-top: #fe3c72;
+}
+
+.message-container div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.new-message-container {
+  display: flex;
+  flex-direction: row;
+  height: 5vh;
+}
+.new-message-container input {
+  width: 80%;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: lightblue;
+  height: 40px;
+  color: black;
+}
+
+.new-message-container button {
+  background-color: white;
+  width: 20%;
+  border: none;
+  margin-left: -20px;
+  border-radius: 10px;
+}
+
+.my {
+  background-color: rgb(145, 207, 231);
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 2px;
+  margin-left: auto;
+}
+.res {
+  background-color: gray;
+  margin-right: auto;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 2px;
+}
+
+/* main.js */
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main .swipe-container {
+  background-color: whitesmoke;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.main .card-container {
+  width: 350px;
+  height: 650px;
+}
+
+.swipe {
+  position: absolute;
+}
+
+.card {
+  color: white;
+  position: absolute;
+  width: 350px;
+  height: 600px;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-body-text {
+  background-color: black;
+  color: white;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  padding: 10px;
+}
+
+.current-image {
+  display: flex;
+  justify-content: space-between;
+}
+
+.current-image button {
+  color: white;
+  border: none;
+  background-color: transparent;
+  font-size: 40px;
+  height: 500px;
+  width: 30px;
+}
+
+.current-image button:hover {
+  color: black;
+}
+
+/* login and signup */
+.center {
+  font-family: calibri;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+}
+.center h1 {
   text-align: center;
 }
+.center .closebtn {
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+  margin-left: 90%;
+}
+.center .closebtn:hover {
+  cursor: pointer;
+}
+.center form {
+  padding: 0 40px;
+  box-sizing: border-box;
+}
 
-.App-logo {
-  height: 40vmin;
+form .txt_field {
+  position: relative;
+  margin: 30px 0;
+}
+.txt_field input {
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
   pointer-events: none;
+  transition: 0.5s;
+}
+.txt_field span::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: 0.5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label {
+  top: -5px;
+  color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before {
+  width: 100%;
+}
+.pass {
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
+  cursor: pointer;
+}
+.pass:hover {
+  text-decoration: underline;
+}
+button[type="submit"] {
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 25px;
+  font-size: 18px;
+  color: #e9f4fb;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+input[type="submit"]:hover {
+  border-color: #2691d9;
+  transition: 0.5s;
+}
+.signup {
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+}
+.signup a {
+  color: #2691d9;
+  text-decoration: none;
+}
+.signup a:hover {
+  text-decoration: underline;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* navbar */
+.nav {
+  font-family: Calibri;
+  background-color: transparent;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo {
+  height: 4rem;
+  width: 4rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  font-size: 2rem;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+}
+nav ul li a:hover {
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+}
+
+/*Create Profle*/
+.create-page {
+  margin: 5vh 0 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-preview {
+  margin-right: 50px;
+  width: 350px;
+  height: 600px;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+}
+
+input[type="file"] {
+  display: none;
+}
+.image-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.profile {
+  text-align: center;
+  font-family: cursive;
+  top: 50%;
+  left: 30%;
+  width: 50%;
+  height: 90vh;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* matched-box */
+.matched-box {
+  display: flex;
+}
+
+.matched-box button {
+  margin: 5px 5px 5px 5px;
+  width: 30%;
+  height: 100px;
+  border-radius: 10px;
+  border: none;
+  color: transparent;
+}
+
+.matched-box button:hover {
+  color: black;
+  filter: brightness(60%);
+}
+
+.info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.info-container {
+  background-color: rgba(11, 2, 19, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closeInfo {
+  background-color: transparent;
+  border: none;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
   color: white;
+  border-radius: 50%;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.closeInfo:hover {
+  background-color: black;
 }

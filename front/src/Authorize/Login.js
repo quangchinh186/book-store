@@ -1,11 +1,10 @@
 import React,{ useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getUsers } from './Back/Fetch.js';
 
 function Login() {
   let navigate = useNavigate();
   const [account, setAccount] = useState({
-    username:"",
+    email:"",
     password:"",
   })
 
@@ -18,15 +17,21 @@ function Login() {
 
   const handleSubmit = (event) => {
     //request API here...
-    const usersFilter = { 'account.username': account.username, 'account.password': account.password }
-    getUsers(usersFilter, (users) => {
-      if (users.length === 0) {
-        window.alert("Wrong username or password!!1!")
+    const usersFilter = { 'email': account.email, 'password': account.password }
+    fetch('http://localhost:3001/user/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(usersFilter),
+    }).then(response => {
+      if(response.ok) {
+        console.log('success');
+        navigate('/home');
       } else {
-        sessionStorage.setItem('userId', users[0]._id);
-        navigate('/m')
+        console.log('error');
       }
-    })
+    })  
     event.preventDefault();
   };
 
@@ -41,11 +46,11 @@ function Login() {
             <div className='txt_field'>
               <input 
               type='text' 
-              name='username'
-              value={account.username}
+              name='email'
+              value={account.email}
               onChange={handleChange}
               required/>
-              <label>Username</label>
+              <label>email</label>
             </div>
 
             <div className='txt_field'>

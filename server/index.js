@@ -1,43 +1,24 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const UserModel = require('./schema/user')
+const memberRoute = require('./routes/member')
+const bookRoute = require('./routes/book')
+const orderRoute = require('./routes/order')
+const postRoute = require('./routes/post')
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://quangchinh1122:chinh2003@uetinder.bmmhsoe.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("mongodb+srv://21021458:chinh2003@mycluster.jogeeba.mongodb.net/?retryWrites=true&w=majority")
+    .then(() => console.log('connected to mongodb'))
+    .catch(err => console.log(err))
 
 app.listen(3001, () => {
     console.log('server running on 3001');
 })
 
-app.post('/createUser', (req, res) => {
-    UserModel.find({"username": req.body.username})
-    .then(users => {
-      if (users.length !== 0) {
-        res.json('Username is taken!!!')
-      } else {
-        const newUser = new UserModel({
-            username: req.body.username,
-            password: req.body.password
-        });
-        newUser.save();
-        res.json(newUser._id);
-      }
-    })
-    .catch(err => res.json(err))
-})
-
-app.get('/', (req, res) => {
-    UserModel.find({}).then(result => res.json(result)).catch(err => res.json(err))
-})
-
-app.put('/editUser', (req, res) => {
-
-})
-
-app.delete('/deleteUser', (req, res) => {
-
-})
+app.use('/user', memberRoute)
+app.use('/book', bookRoute)
+app.use('/order', orderRoute)
+app.use('/post', postRoute)
