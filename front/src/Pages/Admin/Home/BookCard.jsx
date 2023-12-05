@@ -16,7 +16,7 @@ const BookCard = ({ book, onDelete, onUpdate, onView }) => {
         <span>Publisher: {book.publisher}</span>
       </div>
       <div className="row multiple">
-        <button>View</button>
+        <button onClick={onView}>View</button>
         <button onClick={onUpdate}>Update</button>
         <button onClick={onDelete}>Delete</button>
       </div>

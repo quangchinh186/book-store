@@ -10,6 +10,7 @@ import Popup from "../../../UI/Popup/Popup";
 const AdminHome = () => {
   const [books, setBooks] = useState([]);
   const [updateBox, setUpdateBox] = useState(false);
+  const [viewBox, setViewBox] = useState(undefined);
   const [updateBook, setUpdateBook] = useState({});
 
   const onFetch = async () => {
@@ -32,36 +33,18 @@ const AdminHome = () => {
   };
 
   const onDelete = (id) => {
-    axios
-      .delete(`http://localhost:3001/book/delete_book/${id}`)
-      .then((res) => {
-        onFetch();
-        toast.success(`Delete book ${id} successfully`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-        });
-      })
-      .catch((err) => {
-        toast.error(`API error ${err}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          theme: "light",
-        });
-      });
+    axios.delete(`http://localhost:3001/book/delete_book/${id}`).then((res) => {
+      onFetch();
+    });
   };
 
   const onUpdate = (id) => {
     setUpdateBox(true);
     setUpdateBook({ id: id });
+  };
+
+  const onView = (content) => {
+    setViewBox(content);
   };
 
   const handleChange = (event) => {
@@ -84,7 +67,7 @@ const AdminHome = () => {
             book={book}
             onDelete={onDelete.bind(null, book._id)}
             onUpdate={onUpdate.bind(null, book._id)}
-            onView={null}
+            onView={onView.bind(null, book.content)}
           />
         ))}
       </div>
@@ -128,6 +111,12 @@ const AdminHome = () => {
               name="publisher"
               onChange={handleChange}
             />
+            <textarea
+              type="text"
+              placeholder="Book Content"
+              name="content"
+              onChange={handleChange}
+            />
             <button
               id="update_book_btn"
               onClick={() => {
@@ -158,6 +147,19 @@ const AdminHome = () => {
               Close
             </button>
           </div>
+        </Popup>
+      )}
+      {viewBox && (
+        <Popup>
+          <p>{viewBox}</p>
+          <button
+            id="close_view_box_btn"
+            onClick={() => {
+              setViewBox(undefined);
+            }}
+          >
+            Close
+          </button>
         </Popup>
       )}
       <ToastContainer />
