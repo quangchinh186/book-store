@@ -5,6 +5,7 @@ import App from './App';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from './Authorize/Login';
 import Signup from './Authorize/Register';
+import Admin from './Pages/Admin/Container/Admin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,7 @@ root.render(
         
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
-       
+        <Route path='/admin' element={<Admin/>}/>
         
       </Routes>
     </BrowserRouter>

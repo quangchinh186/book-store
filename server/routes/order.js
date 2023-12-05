@@ -1,25 +1,15 @@
 const express = require("express");
 const route = express.Router();
-const OrderModel = require("../schema/order");
+const OrderService = require("../services/OrderService");
 
-route.post("/addOrder", async (req, res) => {
-  try {
-    await OrderModel.create(req.body);
-  } catch (err) {
-    res.json(err);
-  }
-});
+route.post("/addOrder", OrderService.createOrder);
 
-route.get("/getOrder", (req, res) => {
-  OrderModel.find({}).then(result => res.json(result)).catch(err => res.json(err));
-});
+route.get("/getOrder", OrderService.getOrder);
 
-route.put("/editOrder/:id", async (req, res) => {
-  OrderModel.findByIdAndUpdate(req.params.id, req.body);
-});
+route.put("/editOrder/:id", OrderService.updateOrder);
 
-route.delete("/deleteOrder/:id", async (req, res) => {
-  await OrderModel.findByIdAndDelete(req.params.id);
-});
+route.delete("/cancel/:id", OrderService.cancelOrder);
+
+route.get("/get_list_order/:user_id", OrderService.getListOfOrders);
 
 module.exports = route;

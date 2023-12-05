@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const memberRoute = require('./routes/member')
 const bookRoute = require('./routes/book')
 const orderRoute = require('./routes/order')
-const postRoute = require('./routes/post')
+const postRoute = require('./routes/forum')
 
 const app = express();
 app.use(cors());

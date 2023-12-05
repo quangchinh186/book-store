@@ -27,7 +27,10 @@ const RentalPlanSchema = new mongoose.Schema({
     },
     planDescription: {
         type: String,
-    }
+    },
+    bookId: {
+        type: mongoose.Schema.Types.ObjectId,
+    },
 })
 
 const LoyaltyCardSchema = new mongoose.Schema({
@@ -57,15 +60,13 @@ const LoyaltyCardSchema = new mongoose.Schema({
     }
 })
 
-const userSchema = new mongoose.Schema({
+const memberSchema = new mongoose.Schema({
     fullname: {
         default: 'nameless',
         type: String,
-        required: true
     },
     password: {
         type: String,
-        required: true
     },
     address: {
         default: 'addressless',
@@ -82,7 +83,6 @@ const userSchema = new mongoose.Schema({
     email: {
         default: 'emailless',
         type: String,
-        required: true
     },
     age: {
         default: 0,
@@ -92,9 +92,9 @@ const userSchema = new mongoose.Schema({
         default: 'genderless',
         type: String,
     },
-    rentalPlan: {
+    rentalPlan: [{
         type: RentalPlanSchema,
-    },
+    }],
     loyaltyCard: {
         type: LoyaltyCardSchema,
     },
@@ -103,5 +103,5 @@ const userSchema = new mongoose.Schema({
     },
 })
 
-const UserModel = mongoose.model("user", userSchema);
-module.exports = UserModel
+const MemberProfile = mongoose.model("user", memberSchema);
+module.exports = MemberProfile;

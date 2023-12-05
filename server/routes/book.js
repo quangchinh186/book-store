@@ -1,25 +1,17 @@
 const express = require('express');
-const BookSchema = require('../schema/book');
+const BookService = require('../services/BookService');
 const route = express.Router();
 
-route.post('/addBook', async (req, res) => {
-  try {
-    await BookSchema.create(req.body)
-  } catch (err) {
-    res.json(err)
-  }
-})
+route.post('/add_book', BookService.createBook)
 
-route.get('/getBook', (req, res) => {
-  BookSchema.find({}).then(result => res.json(result)).catch(err => res.json(err))
-})
+route.get('/get_book_list', BookService.getBookList)
 
-route.put('/editBook/:id', async (req, res) => {
-  BookSchema.findByIdAndUpdate(req.params.id, req.body)
-})
+route.get('/get_book_details/:id', BookService.getBookDetails)
 
-route.delete('/deleteBook/:id', async (req, res) => {
-  await BookSchema.findByIdAndDelete(req.params.id)
-})
+route.patch('/update_book/:id', BookService.updateBook)
+
+route.delete('/delete_book/:id', BookService.deleteBook)
+
+route.get('/create_mock_data', BookService.createMockData)
 
 module.exports = route;
