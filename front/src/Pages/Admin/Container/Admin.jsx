@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AdminHome from "../Home/AdminHome";
 import CreateNewBook from "../CNB/CreateNewBook";
+import Order from "../Order/Order";
 import "./admin.css";
 
 const Admin = () => {
@@ -46,7 +47,7 @@ const Admin = () => {
       </div>
       {tab == "home" && <AdminHome />}
       {tab == "cnb" && <CreateNewBook />}
-      {tab == "order" && <h1>Orders Management</h1>}
+      {tab == "order" && <Order />}
     </div>
   );
 };
