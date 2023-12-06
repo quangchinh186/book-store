@@ -1,9 +1,36 @@
 import React from "react";
 import { useState } from "react";
 import "./cart_item.css";
+import axios from "axios";
 
-const CartItem = ({ item, onRemove }) => {
+const CartItem = ({ item, onRemove, onFetch }) => {
   const [quantity, setQuantity] = useState(item.quantity);
+
+  const onOrder = async (id) => {
+    try {
+      const user_id = sessionStorage.getItem("user_id");
+      await axios.post(`http://localhost:3001/order/addOrder`, {
+        user_id: user_id,
+        orderDate: Date.now(),
+        shippingStatus: "Pending",
+        shipDate: Date.now() + 100000000,
+        book: {
+          id: id,
+          quantity: quantity,
+        },
+        address: "addressless",
+        totalPrice: Math.round(item.bookdata.price * quantity * 100) / 100,
+        paymentAmount: Math.round(item.bookdata.price * quantity * 100) / 100,
+        paymentMethod: "COD",
+        paymentStatus: "Pending",
+        deliveryMethod: "Standard",
+        discount: 0,
+      });
+      onFetch();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const onIncrease = () => {
     if (quantity < item.bookdata.quantity) {
@@ -27,7 +54,7 @@ const CartItem = ({ item, onRemove }) => {
       </div>
       <div className="cart_item_btn">
         <button onClick={onRemove}>Remove</button>
-        <button>Order</button>
+        <button onClick={onOrder.bind(null, item.bookdata._id)}>Order</button>
         <button onClick={onIncrease}>+</button>
         <button onClick={onDecrease}>-</button>
       </div>

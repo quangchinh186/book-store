@@ -1,32 +1,36 @@
 import React from "react";
 import "./ordercard.css";
 
-function OrderCard({order}) {
+function OrderCard({ order, onCancel }) {
   return (
     <div className="Order">
       <div className="book-information">
         <div className="bookInfo">
-          <span>ID: {order.id}</span>
-          <span>Quantity: {order.quantity}</span>
+          <span>Customer ID: {order.user_id}</span>
+          <span>Customer Name: {order.orderer}</span>
+        </div>
+        <div className="bookInfo">
+          <span>ID: {order.book.id}</span>
+          <span>Quantity: {order.book.quantity}</span>
         </div>
         <div className="bookInfo">
           <span>Order Date: {order.orderDate}</span>
         </div>
         <div className="bookInfo">
           <span>Address: {order.address}</span>
-          <span>ShipDate: {order.shipDate}</span>
+          <span>ShipDate: {Date(order.shipDate)}</span>
           <span>ShippingStatus: {order.shippingStatus}</span>
-          <span>Deliver Method: {order.deliverMethod}</span>
+          <span>Deliver Method: {order.deliveryMethod}</span>
         </div>
         <div className="bookInfo">
-          <span>Price: {order.price}</span>
+          <span>Price: {order.totalPrice}</span>
           <span>Discount: {order.discount}</span>
           <span>Payment Method: {order.paymentMethod}</span>
           <span>Payment Status: {order.paymentStatus}</span>
         </div>
         <div className="bookInfo">
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={onCancel}>Cancel</button>
         </div>
       </div>
     </div>

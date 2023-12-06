@@ -10,6 +10,8 @@ route.put("/editOrder/:id", OrderService.updateOrder);
 
 route.delete("/cancel/:id", OrderService.cancelOrder);
 
-route.get("/get_list_order/:user_id", OrderService.getListOfOrders);
+route.get("/get_list_order/:user_id", OrderService.getListOfOrdersByUser);
+
+route.get("/get_list_order", OrderService.getListOfOrders);
 
 module.exports = route;

@@ -39,6 +39,7 @@ const Cart = () => {
           <CartItem
             item={item}
             onRemove={onRemove.bind(null, item.bookdata._id)}
+            onFetch={onFetch}
           />
         ))}
       </div>

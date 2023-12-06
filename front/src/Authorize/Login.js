@@ -22,6 +22,7 @@ function Login() {
     axios.post('http://localhost:3001/user/login', usersFilter).then(response => {
       console.log(response.data);
       sessionStorage.setItem('user_id', response.data._id);
+      sessionStorage.setItem('user_data', JSON.stringify(response.data));
       navigate('/home');
     })
     event.preventDefault();

@@ -19,7 +19,6 @@ class ShopingCart {
           quantity: member.personalCart?.books[i].quantity
         })
       }
-      console.log(carts)
       res.json(carts)
     } catch (error) {
       console.log(error)

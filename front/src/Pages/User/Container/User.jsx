@@ -2,6 +2,7 @@ import Books from "../Books/Books";
 import "./user.css";
 import { useState } from "react";
 import Cart from "../Cart/Cart";
+import Order from "../Order/Order";
 
 const User = () => {
   const [tab, setTab] = useState("home");
@@ -46,6 +47,7 @@ const User = () => {
       </div>
       {tab === "home" ? <Books /> : null}
       {tab === "cart" ? <Cart /> : null}
+      {tab === "order" ? <Order /> : null}
     </div>
   );
 };
