@@ -59,13 +59,26 @@ class OrderService {
       members.forEach(member => {
         memberNameHash[member._id] = member.fullname;
       })
+      const bookNameHash = {};
+      const books = await Book.find({
+        "_id": { $in: orders.map(order => order.book.id) }
+      })
+      books.forEach(book => {
+        bookNameHash[book._id] = book.title;
+      })
       const result = [];
       for (let i = 0; i < orders.length; i++) {
         result.push({
           ...orders[i]._doc,
+          book: {
+            id: orders[i]._doc.book.id,
+            quantity: orders[i]._doc.book.quantity,
+            title: bookNameHash[orders[i]._doc.book.id]
+          },
           orderer: memberNameHash[orders[i].user_id]
         })
       }
+      console.log(result);
       res.json(result);
     } catch (err) {
       console.log(err);

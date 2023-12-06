@@ -11,6 +11,7 @@ function OrderCard({ order, onCancel }) {
         </div>
         <div className="bookInfo">
           <span>ID: {order.book.id}</span>
+          <span>Title: {order.book.title}</span>
           <span>Quantity: {order.book.quantity}</span>
         </div>
         <div className="bookInfo">

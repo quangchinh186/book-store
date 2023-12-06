@@ -6,6 +6,7 @@ const BookCard = ({ book, onDelete, onUpdate, onView }) => {
   return (
     <div className="book-card">
       <div className="row">{book.title}</div>
+      <p>ID BOOK: {book._id}</p>
       <div className="row">{book.description}</div>
       <div className="row multiple">
         <span>Price: {book.price}</span>
