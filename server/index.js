@@ -5,6 +5,7 @@ const memberRoute = require('./routes/member')
 const bookRoute = require('./routes/book')
 const orderRoute = require('./routes/order')
 const postRoute = require('./routes/forum')
+const cartRoute = require('./routes/cart')
 
 const app = express();
 app.use(cors());
@@ -22,3 +23,4 @@ app.use('/user', memberRoute)
 app.use('/book', bookRoute)
 app.use('/order', orderRoute)
 app.use('/post', postRoute)
+app.use('/cart', cartRoute)

@@ -1,6 +1,8 @@
 import React,{ useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
+import axios from 'axios';
+
 function Login() {
   let navigate = useNavigate();
   const [account, setAccount] = useState({
@@ -16,22 +18,12 @@ function Login() {
   };
 
   const handleSubmit = (event) => {
-    //request API here...
     const usersFilter = { 'email': account.email, 'password': account.password }
-    fetch('http://localhost:3001/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(usersFilter),
-    }).then(response => {
-      if(response.ok) {
-        console.log('success');
-        navigate('/home');
-      } else {
-        console.log('error');
-      }
-    })  
+    axios.post('http://localhost:3001/user/login', usersFilter).then(response => {
+      console.log(response.data);
+      sessionStorage.setItem('user_id', response.data._id);
+      navigate('/home');
+    })
     event.preventDefault();
   };
 

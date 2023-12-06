@@ -1,0 +1,29 @@
+.cart_item {
+  width: 60vw;
+  height: 100%;
+  padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.cart_item h1 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cart_item .row {
+  display: flex;
+  gap: 20px;
+}
+
+.cart_item_btn {
+  display: flex;
+  gap: 20px;
+}

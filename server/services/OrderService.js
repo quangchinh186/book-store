@@ -40,6 +40,15 @@ class OrderService {
     }
   }
 
+  static async getListOfOrdersByUser(req, res) {
+    try {
+      const orders = await OrderModel.find({ user_id: req.params.id });
+      res.json(orders);
+    } catch (err) {
+      res.json(err);
+    }
+  }
+
   static async cancelOrder(req, res) {
     try {
       const order = await OrderModel.findById(req.params.id);

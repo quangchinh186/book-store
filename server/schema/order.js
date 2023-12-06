@@ -3,53 +3,42 @@ const mongoose = require('mongoose');
 const OrderSchema = new mongoose.Schema({
   orderDate: {
     type: Date,
-    required: true
   },
   shippingStatus: {
     type: String,
-    required: true
   },
   shipDate: {
     type: Number,
-    required: true
   },
-  books: [{
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
+  book: {
+    type: {
+      id: mongoose.Schema.Types.ObjectId,
+      quantity: Number,
     },
-    quantity: {
-      type: Number,
-      required: true
-    }
-  }],
+  },
   address: {
     type: String,
-    required: true
   },
   totalPrice: {
     type: Number,
-    required: true
   },
   paymentAmount: {
     type: Number,
-    required: true
   },
   paymentMethod: {
     type: String,
-    required: true
   },
   paymentStatus: {
     type: String,
-    required: true
   },
   deliveryMethod: {
     type: String,
-    required: true
   },
   discount: {
     type: Number,
-    required: true
   }
 })
 
